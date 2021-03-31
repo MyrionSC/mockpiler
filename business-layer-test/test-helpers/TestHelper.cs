@@ -7,8 +7,8 @@ namespace business_layer_test
     {
         public static void AssertEqualNoWhitepace(string expected, string actual)
         {
-            string expectedClean = expected.Replace(" ", String.Empty).Replace("\n", String.Empty);
-            string actualClean = actual.Replace(" ", String.Empty).Replace("\n", String.Empty);
+            string expectedClean = expected.Replace(" ", string.Empty).Replace("\n", string.Empty).Replace("\t", string.Empty);
+            string actualClean = actual.Replace(" ", string.Empty).Replace("\n", string.Empty).Replace("\t", string.Empty);
             Assert.AreEqual(expectedClean, actualClean);
         }
     }

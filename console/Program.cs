@@ -12,10 +12,9 @@ namespace console
                 Console.WriteLine("arg1 should be filepath to json file");
                 return;
             }
-
-            string input = File.ReadAllText(args[1]);
             
-            string output = Mockpiler.Mockpile(input);
+            string input = File.ReadAllText(args[1]);
+            string output = Mockpiler.ExecuteMockpile(input);
             
             // write output to stdout
             Console.Write(output);
