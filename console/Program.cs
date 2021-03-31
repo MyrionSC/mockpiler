@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using business_layer;
+using Newtonsoft.Json;
 
 namespace console
 {
@@ -8,12 +9,12 @@ namespace console
     {
         static void Main(string[] args)
         {
-            if (args.Length != 2) {
+            if (args.Length != 1) {
                 Console.WriteLine("arg1 should be filepath to json file");
                 return;
             }
             
-            string input = File.ReadAllText(args[1]);
+            string input = File.ReadAllText(args[0]);
             string output = Mockpiler.ExecuteMockpile(input);
             
             // write output to stdout
