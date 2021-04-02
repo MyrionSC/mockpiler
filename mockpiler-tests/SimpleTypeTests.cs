@@ -62,11 +62,10 @@ namespace business_layer_test
         [Test]
         public void SingleDateTimeExactMatch()
         {
-            string input = @"{}";
+            string input = @"{""SomeDateTime"": ""2021-04-02T09:00:34""}";
             string actual = Mockpiler.ExecuteMockpile(input);
-            string expected = "{}";
-            // TestHelper.AssertEqualNoWhitepace(expected, actual);
-            Assert.Fail();
+            string expected = @"{ SomeDateTime = DateTime.Parse(""2021-04-02T09:00:34"") }";
+            TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
         
         [Test]

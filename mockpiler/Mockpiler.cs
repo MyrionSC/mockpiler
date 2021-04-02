@@ -15,6 +15,8 @@ namespace business_layer
                     return Mockpile(l);
                 case double d:
                     return Mockpile(d);
+                case DateTime dt:
+                    return Mockpile(dt);
                 case string str:
                     return Mockpile(str);
                 default:
@@ -22,6 +24,12 @@ namespace business_layer
             }
         }
 
+        public static string Mockpile(DateTime input)
+        {
+            string isoDateStr = input.ToString("s", System.Globalization.CultureInfo.InvariantCulture);
+            return $"DateTime.Parse(\"{isoDateStr}\")";
+        }
+        
         public static string Mockpile(string input)
         {
             return $"\"{input}\"";
@@ -44,10 +52,11 @@ namespace business_layer
         
         public static string ExecuteMockpile(string input)
         {
-            // SomeClass sc = new SomeClass {
-            //     SomeInt = 1,
-            //     SomeDouble = 1.0
-            // };
+            SomeClass sc = new SomeClass {
+                SomeInt = 1,
+                SomeDouble = 1.0,
+                SomeDateTime = DateTime.Parse("2021-04-02T09:00:34Z")
+            };
             
             Dictionary<string, object> dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(input);
             return Mockpile(dict);
