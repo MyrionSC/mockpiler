@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace business_layer
 {
@@ -10,6 +9,12 @@ namespace business_layer
         public static string Mockpile(object input)
         {
             switch (input) {
+                case int i:
+                    return Mockpile(i);
+                case long l:
+                    return Mockpile(l);
+                case double d:
+                    return Mockpile(d);
                 case string str:
                     return Mockpile(str);
                 default:
@@ -20,6 +25,11 @@ namespace business_layer
         public static string Mockpile(string input)
         {
             return $"\"{input}\"";
+        }
+        
+        public static string Mockpile(double input)
+        {
+            return input.ToString(System.Globalization.CultureInfo.InvariantCulture); // commas as dots
         }
         
         public static string Mockpile(Dictionary<string, object> input)

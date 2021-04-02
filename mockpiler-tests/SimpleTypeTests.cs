@@ -33,6 +33,15 @@ namespace business_layer_test
         }
 
         [Test]
+        public void StringButCouldBeInt()
+        {
+            string input = @"{""SomeString"": ""42""}";
+            string actual = Mockpiler.ExecuteMockpile(input);
+            string expected = @"{ SomeString = ""42"" }";
+            TestHelper.AssertEqualNoWhitepace(expected, actual);
+        }
+
+        [Test]
         public void SingleIntExactMatch()
         {
             string input = @"{ ""SomeInt"": 42 }";
@@ -44,11 +53,10 @@ namespace business_layer_test
         [Test]
         public void SingleDoubleExactMatch()
         {
-            string input = @"{}";
+            string input = @"{ ""SomeDouble"": 42.5 }";
             string actual = Mockpiler.ExecuteMockpile(input);
-            string expected = "{}";
-            // TestHelper.AssertEqualNoWhitepace(expected, actual);
-            Assert.Fail();
+            string expected = "{ SomeDouble = 42.5 }";
+            TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
 
         [Test]
