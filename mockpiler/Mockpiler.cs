@@ -15,7 +15,10 @@ namespace business_layer
                     SomeString = "somestring",
                     SomeInt = 42,
                     SomeDouble = 42.5,
-                    SomeDateTime = DateTime.Parse("2021-04-02T09:00:34")
+                    SomeDateTime = DateTime.Parse("2021-04-02T09:00:34"),
+                    SomeStringList = new List<string> {
+                        "item1", "item2"
+                    }
                 },
                 Nested2 = new() {
                     SomeString = "somestring",
@@ -32,8 +35,10 @@ namespace business_layer
         public static string Mockpile(object input)
         {
             return input switch {
-                JObject jObject => Mockpile(jObject),
                 Dictionary<string, object> dict => Mockpile(dict),
+                JObject jObject => Mockpile(jObject),
+                JArray jArray => Mockpile(jArray),
+                JValue jValue => Mockpile(jValue),
                 long l => Mockpile(l), // gets sent to double for some reason, which works
                 double d => Mockpile(d),
                 DateTime dt => Mockpile(dt),
@@ -42,18 +47,30 @@ namespace business_layer
             };
         }
         
+        public static string Mockpile(Dictionary<string, object> input)
+        {
+            List<string> resultList = input.Select(pair => $"{pair.Key} = {Mockpile(pair.Value)}").ToList();
+            return $"new() \n{{\n{string.Join(",\n", resultList)}\n}}";
+        }
+
         // Nested classes come out of JsonConvert as JObject. We convert to dict and pass it along.
         public static string Mockpile(JObject input)
         {
             return Mockpile(input.ToObject<Dictionary<string, object>>());
         }
         
-        public static string Mockpile(Dictionary<string, object> input)
+        public static string Mockpile(JValue input)
         {
-            List<string> resultList = input.Select(pair => $"{pair.Key} = {Mockpile(pair.Value)}").ToList();
-            return $"new() \n{{\n\t{string.Join(",\n", resultList)}\n}}";
+            return Mockpile(input.ToObject<object>());
         }
-
+        
+        // TODO: Try to guess array type from first element
+        public static string Mockpile(JArray input)
+        {
+            List<string> resultList = input.Select(Mockpile).ToList();
+            return $"new List<dynamic> {{\n{string.Join(",\n", resultList)}\n}}" ;
+        }
+        
         public static string Mockpile(double input)
         {
             return input.ToString(System.Globalization.CultureInfo.InvariantCulture); // commas as dots
@@ -77,6 +94,15 @@ namespace business_layer
         public int SomeInt;
         public double SomeDouble;
         public DateTime SomeDateTime;
+        public List<string> SomeStringList { get; set; }
+        // public List<int> SomeIntList { get; set; }
+        // public List<InnerClass> SomeClassList { get; set; }
+    }
+
+    public class InnerClass
+    {
+        public int InnerClassInt;
+        public int InnerClassString;
     }
 
     public class Outer
