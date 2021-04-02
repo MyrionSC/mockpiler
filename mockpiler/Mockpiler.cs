@@ -30,33 +30,40 @@ namespace business_layer
             string isoDateStr = input.ToString("s", System.Globalization.CultureInfo.InvariantCulture);
             return $"DateTime.Parse(\"{isoDateStr}\")";
         }
-        
+
         public static string Mockpile(string input)
         {
             return $"\"{input}\"";
         }
-        
+
         public static string Mockpile(double input)
         {
             return input.ToString(System.Globalization.CultureInfo.InvariantCulture); // commas as dots
         }
-        
+
         public static string Mockpile(Dictionary<string, object> input)
         {
             List<string> resultList = input.Select(pair => $"{pair.Key} = {Mockpile(pair.Value)}").ToList();
-            return $"{{\n\t{ string.Join(",\n", resultList) }\n}}";
+            return $"{{\n\t{string.Join(",\n", resultList)}\n}}";
         }
-        
-        public static string ExecuteMockpile(string input)
+
+        public static string StartMockpile(string input)
         {
-            SomeClass sc = new SomeClass 
-            {
+            Nested nested = new() {
+                Inner = {
+                    SomeString = "somestring",
+                    SomeInt = 42,
+                    SomeDouble = 42.5,
+                    SomeDateTime = DateTime.Parse("2021-04-02T09:00:34")
+                }
+            };
+            SomeClass sc = new() {
                 SomeString = "somestring",
                 SomeInt = 42,
                 SomeDouble = 42.5,
                 SomeDateTime = DateTime.Parse("2021-04-02T09:00:34")
             };
-            
+
             Dictionary<string, object> dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(input);
             return Mockpile(dict);
         }
@@ -68,5 +75,10 @@ namespace business_layer
         public int SomeInt { get; set; }
         public double SomeDouble { get; set; }
         public DateTime SomeDateTime { get; set; }
+    }
+
+    public class Nested
+    {
+        public SomeClass Inner { get; }
     }
 }

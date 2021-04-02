@@ -11,7 +11,7 @@ namespace business_layer_test
         public void EmptyExactMatch()
         {
             string input = @"{}";
-            string actual = Mockpiler.ExecuteMockpile(input);
+            string actual = Mockpiler.StartMockpile(input);
             string expected = "{}";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
@@ -20,14 +20,14 @@ namespace business_layer_test
         public void InvalidJson()
         {
             string input = @"{";
-            Assert.Throws<JsonSerializationException>(() => Mockpiler.ExecuteMockpile(input));
+            Assert.Throws<JsonSerializationException>(() => Mockpiler.StartMockpile(input));
         }
 
         [Test]
         public void SingleStringExactMatch()
         {
             string input = @"{""SomeString"": ""somestring""}";
-            string actual = Mockpiler.ExecuteMockpile(input);
+            string actual = Mockpiler.StartMockpile(input);
             string expected = @"{ SomeString = ""somestring"" }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
@@ -36,7 +36,7 @@ namespace business_layer_test
         public void StringButCouldBeInt()
         {
             string input = @"{""SomeString"": ""42""}";
-            string actual = Mockpiler.ExecuteMockpile(input);
+            string actual = Mockpiler.StartMockpile(input);
             string expected = @"{ SomeString = ""42"" }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
@@ -45,7 +45,7 @@ namespace business_layer_test
         public void SingleIntExactMatch()
         {
             string input = @"{ ""SomeInt"": 42 }";
-            string actual = Mockpiler.ExecuteMockpile(input);
+            string actual = Mockpiler.StartMockpile(input);
             string expected = "{ SomeInt = 42 }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
@@ -54,7 +54,7 @@ namespace business_layer_test
         public void SingleDoubleExactMatch()
         {
             string input = @"{ ""SomeDouble"": 42.5 }";
-            string actual = Mockpiler.ExecuteMockpile(input);
+            string actual = Mockpiler.StartMockpile(input);
             string expected = "{ SomeDouble = 42.5 }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
@@ -63,7 +63,7 @@ namespace business_layer_test
         public void SingleDateTimeExactMatch()
         {
             string input = @"{""SomeDateTime"": ""2021-04-02T09:00:34""}";
-            string actual = Mockpiler.ExecuteMockpile(input);
+            string actual = Mockpiler.StartMockpile(input);
             string expected = @"{ SomeDateTime = DateTime.Parse(""2021-04-02T09:00:34"") }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
@@ -77,7 +77,7 @@ namespace business_layer_test
                 ""SomeDouble"": 42.5,
                 ""SomeDateTime"": ""2021-04-02T09:00:34""
             }";
-            string actual = Mockpiler.ExecuteMockpile(input);
+            string actual = Mockpiler.StartMockpile(input);
             string expected = @"{
                 SomeString = ""somestring"",
                 SomeInt = 42,

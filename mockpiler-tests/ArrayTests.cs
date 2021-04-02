@@ -11,7 +11,7 @@ namespace business_layer_test
         {
             Assert.Fail();
             // string input = @"{}";
-            // string actual = Mockpiler.ExecuteMockpile(input);
+            // string actual = Mockpiler.StartMockpile(input);
             // string expected = "{}";
             // TestHelper.AssertEqualNoWhitepace(expected, actual);
         }

@@ -15,7 +15,7 @@ namespace console
             }
             
             string input = File.ReadAllText(args[0]);
-            string output = Mockpiler.ExecuteMockpile(input);
+            string output = Mockpiler.StartMockpile(input);
             
             // write output to stdout
             Console.Write(output);
