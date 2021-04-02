@@ -18,6 +18,16 @@ namespace business_layer
                     SomeDateTime = DateTime.Parse("2021-04-02T09:00:34"),
                     SomeStringList = new List<string> {
                         "item1", "item2"
+                    },
+                    SomeClassList = new List<InnerClass> {
+                        new () {
+                            InnerClassInt = 2,
+                            InnerClassString = "lala"
+                        },
+                        new() {
+                            InnerClassInt = 3,
+                            InnerClassString = "lolo"
+                        }
                     }
                 },
                 Nested2 = new() {
@@ -96,13 +106,13 @@ namespace business_layer
         public DateTime SomeDateTime;
         public List<string> SomeStringList { get; set; }
         // public List<int> SomeIntList { get; set; }
-        // public List<InnerClass> SomeClassList { get; set; }
+        public List<InnerClass> SomeClassList { get; set; }
     }
 
     public class InnerClass
     {
         public int InnerClassInt;
-        public int InnerClassString;
+        public string InnerClassString;
     }
 
     public class Outer

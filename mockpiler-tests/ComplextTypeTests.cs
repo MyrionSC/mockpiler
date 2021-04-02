@@ -42,6 +42,37 @@ namespace business_layer_test
         }
         
         [Test]
+        public void NestedClassWithClassArray()
+        {
+            string input = @"{
+              ""SomeClassList"": [
+                    {
+                        InnerClassInt: 2,
+                        InnerClassString: ""lala""
+                    },
+                    {
+                        InnerClassInt: 3,
+                        InnerClassString: ""lolo""
+                    }
+                ]
+            }";
+            string actual = Mockpiler.StartMockpile(input);
+            string expected = @"new() {
+                SomeClassList = new List<dynamic> {
+                    new () {
+                        InnerClassInt = 2,
+                        InnerClassString = ""lala""
+                    },
+                    new() {
+                        InnerClassInt = 3,
+                        InnerClassString = ""lolo""
+                    }
+                }
+            }";
+            TestHelper.AssertEqualNoWhitepace(expected, actual);
+        }
+        
+        [Test]
         public void NestedClassWithIntArray()
         {
             string input = @"{
