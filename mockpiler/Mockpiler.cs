@@ -34,6 +34,11 @@ namespace business_layer
         
         public static string ExecuteMockpile(string input)
         {
+            // SomeClass sc = new SomeClass {
+            //     SomeInt = 1,
+            //     SomeDouble = 1.0
+            // };
+            
             Dictionary<string, object> dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(input);
             return Mockpile(dict);
         }
@@ -41,6 +46,9 @@ namespace business_layer
 
     public class SomeClass
     {
-        public string La { get; set; }
+        public string SomeString { get; set; }
+        public int SomeInt { get; set; }
+        public double SomeDouble { get; set; }
+        public DateTime SomeDateTime { get; set; }
     }
 }

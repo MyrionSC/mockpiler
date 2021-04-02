@@ -4,15 +4,16 @@ using NUnit.Framework;
 
 namespace business_layer_test
 {
-    public class SimpleTypeTests
+    public class ArrayTests
     {
         [Test]
         public void SingleArrayEmptyExactMatch()
         {
-            string input = @"{}";
-            string actual = Mockpiler.ExecuteMockpile(input);
-            string expected = "{}";
-            TestHelper.AssertEqualNoWhitepace(expected, actual);
+            Assert.Fail();
+            // string input = @"{}";
+            // string actual = Mockpiler.ExecuteMockpile(input);
+            // string expected = "{}";
+            // TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
     }
 }

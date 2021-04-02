@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace business_layer_test
 {
-    public class ArrayTests
+    public class SimpleTypeTests
     {
         [Test]
         public void EmptyExactMatch()
@@ -26,18 +26,18 @@ namespace business_layer_test
         [Test]
         public void SingleStringExactMatch()
         {
-            string input = @"{""La"": ""lo""}";
+            string input = @"{""SomeString"": ""somestring""}";
             string actual = Mockpiler.ExecuteMockpile(input);
-            string expected = @"{ La = ""lo"" }";
+            string expected = @"{ SomeString = ""somestring"" }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
 
         [Test]
         public void SingleIntExactMatch()
         {
-            string input = @"{}";
+            string input = @"{ ""SomeInt"": 42 }";
             string actual = Mockpiler.ExecuteMockpile(input);
-            string expected = "{}";
+            string expected = "{ SomeInt = 42 }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
 
@@ -47,16 +47,8 @@ namespace business_layer_test
             string input = @"{}";
             string actual = Mockpiler.ExecuteMockpile(input);
             string expected = "{}";
-            TestHelper.AssertEqualNoWhitepace(expected, actual);
-        }
-
-        [Test]
-        public void SingleDateExactMatch()
-        {
-            string input = @"{}";
-            string actual = Mockpiler.ExecuteMockpile(input);
-            string expected = "{}";
-            TestHelper.AssertEqualNoWhitepace(expected, actual);
+            // TestHelper.AssertEqualNoWhitepace(expected, actual);
+            Assert.Fail();
         }
 
         [Test]
@@ -65,7 +57,19 @@ namespace business_layer_test
             string input = @"{}";
             string actual = Mockpiler.ExecuteMockpile(input);
             string expected = "{}";
-            TestHelper.AssertEqualNoWhitepace(expected, actual);
+            // TestHelper.AssertEqualNoWhitepace(expected, actual);
+            Assert.Fail();
         }
+        
+        [Test]
+        public void AllSimpleTypesExactMatch()
+        {
+            string input = @"{}";
+            string actual = Mockpiler.ExecuteMockpile(input);
+            string expected = "{}";
+            // TestHelper.AssertEqualNoWhitepace(expected, actual);
+            Assert.Fail();
+        }
+
     }
 }

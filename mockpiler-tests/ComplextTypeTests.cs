@@ -7,9 +7,9 @@ namespace business_layer_test
     public class ComplextTypeTests
     {
         [Test]
-        public void Pass()
+        public void NestedClass()
         {
-            Assert.Pass();
+            Assert.Fail();
         }
     }
 }
