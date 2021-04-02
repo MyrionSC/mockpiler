@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace business_layer
@@ -42,20 +43,18 @@ namespace business_layer
         
         public static string Mockpile(Dictionary<string, object> input)
         {
-            string res = "{\n\t";
-            foreach (KeyValuePair<string,object> pair in input) {
-                res += $"{pair.Key} = {Mockpile(pair.Value)}\n";
-            }
-            res += "\n}";
-            return res;
+            List<string> resultList = input.Select(pair => $"{pair.Key} = {Mockpile(pair.Value)}").ToList();
+            return $"{{\n\t{ string.Join(",\n", resultList) }\n}}";
         }
         
         public static string ExecuteMockpile(string input)
         {
-            SomeClass sc = new SomeClass {
-                SomeInt = 1,
-                SomeDouble = 1.0,
-                SomeDateTime = DateTime.Parse("2021-04-02T09:00:34Z")
+            SomeClass sc = new SomeClass 
+            {
+                SomeString = "somestring",
+                SomeInt = 42,
+                SomeDouble = 42.5,
+                SomeDateTime = DateTime.Parse("2021-04-02T09:00:34")
             };
             
             Dictionary<string, object> dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(input);

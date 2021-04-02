@@ -71,11 +71,20 @@ namespace business_layer_test
         [Test]
         public void AllSimpleTypesExactMatch()
         {
-            string input = @"{}";
+            string input = @"{
+                ""SomeString"": ""somestring"",
+                ""SomeInt"": 42,
+                ""SomeDouble"": 42.5,
+                ""SomeDateTime"": ""2021-04-02T09:00:34""
+            }";
             string actual = Mockpiler.ExecuteMockpile(input);
-            string expected = "{}";
-            // TestHelper.AssertEqualNoWhitepace(expected, actual);
-            Assert.Fail();
+            string expected = @"{
+                SomeString = ""somestring"",
+                SomeInt = 42,
+                SomeDouble = 42.5,
+                SomeDateTime = DateTime.Parse(""2021-04-02T09:00:34"")
+            }";
+            TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
 
     }

@@ -1,0 +1,6 @@
+﻿{
+  "SomeString": "somestring",
+  "SomeInt": 42,
+  "SomeDouble": 42.5,
+  "SomeDateTime": "2021-04-02T09:00:34"
+}
