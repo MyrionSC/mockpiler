@@ -5,9 +5,9 @@ VisualStudioVersion = 16.6.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console", "console\console.csproj", "{6FDA2C12-671B-4078-AD01-FF838C5C0397}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "business-layer", "business-layer\business-layer.csproj", "{24B00E0E-7D16-486F-B3DA-2F31586E2A1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mockpiler", "mockpiler\mockpiler.csproj", "{24B00E0E-7D16-486F-B3DA-2F31586E2A1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "business-layer-test", "business-layer-test\business-layer-test.csproj", "{839A9B3D-5FCE-4652-B95D-7C8CC7C0B009}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mockpiler-tests", "mockpiler-tests\mockpiler-tests.csproj", "{839A9B3D-5FCE-4652-B95D-7C8CC7C0B009}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

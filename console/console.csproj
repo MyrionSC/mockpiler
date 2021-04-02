@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\business-layer\business-layer.csproj" />
+    <ProjectReference Include="..\mockpiler\mockpiler.csproj" />
   </ItemGroup>
 
 </Project>

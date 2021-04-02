@@ -15,11 +15,6 @@ namespace business_layer
                 default:
                     return "default hit";
             }
-            
-            // SomeClass la = new SomeClass() 
-            // {
-            //     La = "la"
-            // };
         }
 
         public static string Mockpile(string input)
