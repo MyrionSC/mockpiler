@@ -58,7 +58,7 @@ namespace business_layer_test
             }";
             string actual = Mockpiler.StartMockpile(input);
             string expected = @"new() {
-                SomeClassList = new List<dynamic> {
+                SomeClassList = new() {
                     new () {
                         InnerClassInt = 2,
                         InnerClassString = ""lala""
@@ -82,7 +82,7 @@ namespace business_layer_test
             }";
             string actual = Mockpiler.StartMockpile(input);
             string expected = @"new() {
-                SomeIntList = new List<dynamic> {
+                SomeIntList = new() {
                     42, 24
                 }
             }";
@@ -99,7 +99,7 @@ namespace business_layer_test
             }";
             string actual = Mockpiler.StartMockpile(input);
             string expected = @"new() {
-                SomeStringList = new List<dynamic> {
+                SomeStringList = new() {
                     ""item1"", ""item2""
                 }
             }";

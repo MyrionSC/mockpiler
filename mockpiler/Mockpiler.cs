@@ -47,11 +47,10 @@ namespace mockpiler
             return Mockpile(input.ToObject<object>());
         }
 
-        // TODO: Try to guess array type from first element
         public static string Mockpile(JArray input)
         {
             List<string> resultList = input.Select(Mockpile).ToList();
-            return $"new List<dynamic> {{\n{string.Join(",\n", resultList)}\n}}";
+            return $"new() {{\n{string.Join(",\n", resultList)}\n}}";
         }
 
         public static string Mockpile(double input)
