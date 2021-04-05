@@ -18,7 +18,6 @@ namespace mockpiler
         public static string Mockpile(object input)
         {
             return input switch {
-                Dictionary<string, object> dict => Mockpile(dict),
                 JObject jObject => Mockpile(jObject),
                 JArray jArray => Mockpile(jArray),
                 JValue jValue => Mockpile(jValue),

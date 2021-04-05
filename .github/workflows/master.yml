@@ -1,10 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
-
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
   pull_request:
@@ -13,37 +8,43 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  setup:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1.7.2
         with:
-          # SDK version to use. Examples: 2.2.104, 3.1, 3.1.x
-          dotnet-version: 5.0.x # optional
-          # Optional package source for which to set up authentication. Will consult any existing NuGet.config in the root of the repo and provide a temporary NuGet.config using the NUGET_AUTH_TOKEN environment variable as a ClearTextPassword
-          #source-url: # optional
-          # Optional OWNER for using packages from GitHub Package Registry organizations/users other than the current repository's owner. Only used if a GPR URL is also provided in source-url
-          #owner: # optional
-          # Optional NuGet.config location, if your NuGet.config isn't located in the root of the repo.
-          #config-file: # optional
+          dotnet-version: 5.0.x
+          
+  restore:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Restore
+        run: dotnet restore
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+  test:
+    runs-on: ubuntu-latest
+    needs: restore
+    steps:
+      - name: Test
+        run: dotnet test
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+  publish:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Publish
+        run: dotnet publish -c Release -r linux-x64 --self-contained false
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+      - name: Deploy
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          ls .
+          echo TODO deploy
