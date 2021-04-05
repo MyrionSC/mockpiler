@@ -43,7 +43,6 @@ jobs:
         with:
           dotnet-version: 5.0.x
       - name: Publish
-        uses: actions/setup-dotnet@v1.7.2
         run: |
           dotnet publish -c Release -r linux-x64 --self-contained false
           ls .
