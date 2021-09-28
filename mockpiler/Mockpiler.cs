@@ -49,7 +49,7 @@ namespace mockpiler
         public static string Mockpile(JArray input)
         {
             List<string> resultList = input.Select(Mockpile).ToList();
-            return $"new {{\n{string.Join(",\n", resultList)}\n}}";
+            return $"new[] {{\n{string.Join(",\n", resultList)}\n}}";
         }
 
         public static string Mockpile(bool input)

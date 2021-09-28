@@ -24,14 +24,14 @@ namespace business_layer_test
               }
             }";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() {
-                Nested1 = new() {
+            string expected = @"new {
+                Nested1 = new {
                     SomeString = ""somestring"",
                     SomeInt = 42,
                     SomeDouble = 42.5,
                     SomeDateTime = DateTime.Parse(""2021-04-02T09:00:34"")
                 },
-                Nested2 = new() {
+                Nested2 = new {
                     SomeString = ""somestring"",
                     SomeInt = 42,
                     SomeDouble = 42.5,
@@ -40,7 +40,7 @@ namespace business_layer_test
             }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
-        
+
         [Test]
         public void NestedClassWithClassArray()
         {
@@ -57,13 +57,13 @@ namespace business_layer_test
                 ]
             }";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() {
-                SomeClassList = new() {
-                    new () {
+            string expected = @"new {
+                SomeClassList = new[] {
+                    new {
                         InnerClassInt = 2,
                         InnerClassString = ""lala""
                     },
-                    new() {
+                    new {
                         InnerClassInt = 3,
                         InnerClassString = ""lolo""
                     }
@@ -71,7 +71,7 @@ namespace business_layer_test
             }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
-        
+
         [Test]
         public void NestedClassWithIntArray()
         {
@@ -81,14 +81,14 @@ namespace business_layer_test
                 ]
             }";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() {
-                SomeIntList = new() {
+            string expected = @"new {
+                SomeIntList = new [] {
                     42, 24
                 }
             }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
-        
+
         [Test]
         public void NestedClassWithStringArray()
         {
@@ -98,8 +98,8 @@ namespace business_layer_test
                 ]
             }";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() {
-                SomeStringList = new() {
+            string expected = @"new {
+                SomeStringList = new [] {
                     ""item1"", ""item2""
                 }
             }";

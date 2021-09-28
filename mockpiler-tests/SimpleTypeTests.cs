@@ -12,7 +12,7 @@ namespace business_layer_test
         {
             string input = @"{}";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() {}";
+            string expected = @"new {}";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
         
@@ -28,7 +28,7 @@ namespace business_layer_test
         {
             string input = @"{""SomeString"": ""somestring""}";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() { SomeString = ""somestring"" }";
+            string expected = @"new { SomeString = ""somestring"" }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
 
@@ -37,7 +37,7 @@ namespace business_layer_test
         {
             string input = @"{""SomeString"": ""42""}";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() { SomeString = ""42"" }";
+            string expected = @"new { SomeString = ""42"" }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
 
@@ -46,7 +46,7 @@ namespace business_layer_test
         {
             string input = @"{ ""SomeInt"": 42 }";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() { SomeInt = 42 }";
+            string expected = @"new { SomeInt = 42 }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
 
@@ -55,7 +55,7 @@ namespace business_layer_test
         {
             string input = @"{ ""SomeDouble"": 42.5 }";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() { SomeDouble = 42.5 }";
+            string expected = @"new { SomeDouble = 42.5 }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
 
@@ -64,7 +64,7 @@ namespace business_layer_test
         {
             string input = @"{ ""SomeBool"": true }";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() { SomeBool = true }";
+            string expected = @"new { SomeBool = true }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
         
@@ -73,7 +73,7 @@ namespace business_layer_test
         {
             string input = @"{ ""SomeBool"": false }";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() { SomeBool = false }";
+            string expected = @"new { SomeBool = false }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
 
@@ -82,7 +82,7 @@ namespace business_layer_test
         {
             string input = @"{""SomeDateTime"": ""2021-04-02T09:00:34""}";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() { SomeDateTime = DateTime.Parse(""2021-04-02T09:00:34"") }";
+            string expected = @"new { SomeDateTime = DateTime.Parse(""2021-04-02T09:00:34"") }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
         
@@ -96,7 +96,7 @@ namespace business_layer_test
                 ""SomeDateTime"": ""2021-04-02T09:00:34""
             }";
             string actual = Mockpiler.StartMockpile(input);
-            string expected = @"new() {
+            string expected = @"new {
                 SomeString = ""somestring"",
                 SomeInt = 42,
                 SomeDouble = 42.5,
