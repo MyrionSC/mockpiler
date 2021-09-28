@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -21,6 +20,7 @@ namespace mockpiler
                 JObject jObject => Mockpile(jObject),
                 JArray jArray => Mockpile(jArray),
                 JValue jValue => Mockpile(jValue),
+                bool l => Mockpile(l),
                 long l => Mockpile(l), // gets sent to double for some reason, which works
                 double d => Mockpile(d),
                 DateTime dt => Mockpile(dt),
@@ -32,7 +32,7 @@ namespace mockpiler
         public static string Mockpile(Dictionary<string, object> input)
         {
             List<string> resultList = input.Select(pair => $"{pair.Key} = {Mockpile(pair.Value)}").ToList();
-            return $"new() \n{{\n{string.Join(",\n", resultList)}\n}}";
+            return $"new \n{{\n{string.Join(",\n", resultList)}\n}}";
         }
 
         // Nested classes come out of JsonConvert as JObject. We convert to dict and pass it along.
@@ -49,7 +49,12 @@ namespace mockpiler
         public static string Mockpile(JArray input)
         {
             List<string> resultList = input.Select(Mockpile).ToList();
-            return $"new() {{\n{string.Join(",\n", resultList)}\n}}";
+            return $"new {{\n{string.Join(",\n", resultList)}\n}}";
+        }
+
+        public static string Mockpile(bool input)
+        {
+            return input ? "true" : "false";
         }
 
         public static string Mockpile(double input)

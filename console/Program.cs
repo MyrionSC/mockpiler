@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using mockpiler;
-using Newtonsoft.Json;
 
 namespace console
 {

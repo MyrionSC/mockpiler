@@ -60,6 +60,24 @@ namespace business_layer_test
         }
 
         [Test]
+        public void SingleBooleanTrueExactMatch()
+        {
+            string input = @"{ ""SomeBool"": true }";
+            string actual = Mockpiler.StartMockpile(input);
+            string expected = @"new() { SomeBool = true }";
+            TestHelper.AssertEqualNoWhitepace(expected, actual);
+        }
+        
+        [Test]
+        public void SingleBooleanFalseExactMatch()
+        {
+            string input = @"{ ""SomeBool"": false }";
+            string actual = Mockpiler.StartMockpile(input);
+            string expected = @"new() { SomeBool = false }";
+            TestHelper.AssertEqualNoWhitepace(expected, actual);
+        }
+
+        [Test]
         public void SingleDateTimeExactMatch()
         {
             string input = @"{""SomeDateTime"": ""2021-04-02T09:00:34""}";
