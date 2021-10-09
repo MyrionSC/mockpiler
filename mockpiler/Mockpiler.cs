@@ -16,6 +16,7 @@ namespace mockpiler
 
         public static string Mockpile(object input)
         {
+            if (input is null) return "null";
             return input switch {
                 JObject jObject => Mockpile(jObject),
                 JArray jArray => Mockpile(jArray),

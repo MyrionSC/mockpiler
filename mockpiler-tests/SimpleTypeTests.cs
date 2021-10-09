@@ -113,6 +113,19 @@ namespace business_layer_test
             }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
+        
+        [Test]
+        public void KeyWithNullValue()
+        {
+            string input = @"{
+                SomeKey: null
+            }";
+            string actual = Mockpiler.StartMockpile(input);
+            string expected = @"new() {
+                SomeKey = null
+            }";
+            TestHelper.AssertEqualNoWhitepace(expected, actual);
+        }
 
     }
 }
