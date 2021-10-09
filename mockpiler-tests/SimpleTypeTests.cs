@@ -24,6 +24,15 @@ namespace business_layer_test
         }
 
         [Test]
+        public void SingleStringLowerCaseShouldBeTitleCased()
+        {
+            string input = @"{""some_key"": ""somestring""}";
+            string actual = Mockpiler.StartMockpile(input);
+            string expected = @"new { SomeKey = ""somestring"" }";
+            TestHelper.AssertEqualNoWhitepace(expected, actual);
+        }
+        
+        [Test]
         public void SingleStringExactMatch()
         {
             string input = @"{""SomeString"": ""somestring""}";

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using mockpiler.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -30,7 +31,7 @@ namespace mockpiler
 
         public static string Mockpile(Dictionary<string, object> input)
         {
-            List<string> resultList = input.Select(pair => $"{pair.Key} = {Mockpile(pair.Value)}").ToList();
+            List<string> resultList = input.Select(pair => $"{CaseHelper.TitleCaseDashUnderscore(pair.Key)} = {Mockpile(pair.Value)}").ToList();
             return $"new \n{{\n{string.Join(",\n", resultList)}\n}}";
         }
 
