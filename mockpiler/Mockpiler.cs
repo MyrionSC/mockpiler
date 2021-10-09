@@ -10,8 +10,7 @@ namespace mockpiler
     {
         public static string StartMockpile(string jsonString)
         {
-            Dictionary<string, object> dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonString);
-            return Mockpile(dict);
+            return Mockpile(JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonString));
         }
 
         public static string Mockpile(object input)
