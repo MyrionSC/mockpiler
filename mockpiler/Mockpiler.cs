@@ -32,7 +32,7 @@ namespace mockpiler
         public static string Mockpile(Dictionary<string, object> input)
         {
             List<string> resultList = input.Select(pair => $"{CaseHelper.TitleCaseDashUnderscore(pair.Key)} = {Mockpile(pair.Value)}").ToList();
-            return $"new \n{{\n{string.Join(",\n", resultList)}\n}}";
+            return $"new()\n{{\n{string.Join(",\n", resultList)}\n}}";
         }
 
         // Nested classes come out of JsonConvert as JObject. We convert to dict and pass it along.
