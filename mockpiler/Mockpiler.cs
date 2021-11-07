@@ -11,7 +11,7 @@ namespace mockpiler
     {
         public static string StartMockpile(string jsonString)
         {
-            return Mockpile(JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonString));
+            return Mockpile(JsonConvert.DeserializeObject(jsonString));
         }
 
         public static string Mockpile(object input)

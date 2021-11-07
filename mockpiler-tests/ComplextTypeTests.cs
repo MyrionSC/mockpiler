@@ -104,5 +104,6 @@ namespace business_layer_test
             }";
             TestHelper.AssertEqualNoWhitepace(expected, actual);
         }
+        
     }
 }
